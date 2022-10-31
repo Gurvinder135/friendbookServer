@@ -15,6 +15,7 @@ app.use(
     credentials: true,
   })
 );
+console.log(process.env.URL);
 app.use(cookieParser());
 
 mongoose.connect(
