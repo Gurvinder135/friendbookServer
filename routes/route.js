@@ -8,6 +8,9 @@ const {
 } = require("../controller/controller");
 
 router.post("/login", postLogin);
+router.get("/", (req, res) => {
+  res.send("hello");
+});
 
 router.post("/register", postRegister);
 router.get("/isAuthenticate", isAuthenticate);
