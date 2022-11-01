@@ -31,6 +31,7 @@ module.exports.postRegister = async (req, res) => {
 
 module.exports.isAuthenticate = async (req, res) => {
   if (req.cookies.Token) {
+    console.log(req.cookies);
     let result = jwt.verify(req.cookies.Token, "abc");
     let data = await User.find({ userName: result.data });
     res.send(data);
