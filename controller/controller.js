@@ -37,6 +37,6 @@ module.exports.isAuthenticate = async (req, res) => {
     res.send(data);
     return;
   } else {
-    res.send(req.cookies + "not logged in");
+    res.send(req.cookies);
   }
 };
