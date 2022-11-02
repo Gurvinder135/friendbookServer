@@ -33,9 +33,9 @@ module.exports.isAuthenticate = async (req, res) => {
   if (req.cookies.Token) {
     let result = jwt.verify(req.cookies.Token, "abc");
     let data = await User.find({ userName: result.data });
-    res.send(data);
+    res.json(data);
     return;
   } else {
-    res.send("not logged in");
+    res.json("not logged in");
   }
 };
