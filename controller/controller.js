@@ -41,6 +41,11 @@ module.exports.isAuthenticate = async (req, res) => {
       .json(data);
     return;
   } else {
-    res.json("not logged in");
+    res.res
+      .cookie("jwt", refreshToken, {
+        httpOnly: true,
+        maxAge: 24 * 60 * 60 * 1000,
+      })
+      .json("not logged in");
   }
 };
