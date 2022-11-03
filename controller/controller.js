@@ -34,7 +34,7 @@ module.exports.isAuthenticate = async (req, res) => {
     let result = jwt.verify(req.cookies.Token, "abc");
     let data = await User.find({ userName: result.data });
     res
-      .cookie("jwt", refreshToken, {
+      .cookie("jwt", "refreshToken", {
         httpOnly: true,
         maxAge: 24 * 60 * 60 * 1000,
       })
@@ -42,7 +42,7 @@ module.exports.isAuthenticate = async (req, res) => {
     return;
   } else {
     res.res
-      .cookie("jwt", refreshToken, {
+      .cookie("jwt", "refreshToken", {
         httpOnly: true,
         maxAge: 24 * 60 * 60 * 1000,
       })
