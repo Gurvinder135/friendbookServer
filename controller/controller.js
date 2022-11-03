@@ -33,7 +33,12 @@ module.exports.isAuthenticate = async (req, res) => {
   if (req.cookies.Token) {
     let result = jwt.verify(req.cookies.Token, "abc");
     let data = await User.find({ userName: result.data });
-    res.json(data);
+    res
+      .cookie("jwt", refreshToken, {
+        httpOnly: true,
+        maxAge: 24 * 60 * 60 * 1000,
+      })
+      .json(data);
     return;
   } else {
     res.json("not logged in");
