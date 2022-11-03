@@ -36,12 +36,16 @@ module.exports.postRegister = async (req, res) => {
 };
 
 module.exports.isAuthenticate = async (req, res) => {
-  if (req.cookies.Token) {
-    let result = jwt.verify(req.cookies.Token, "abc");
-    let data = await User.find({ userName: result.data });
-    res.json(data);
-    return;
-  } else {
+  try {
+    if (req.cookies.Token) {
+      let result = jwt.verify(req.cookies.Token, "abc");
+      let data = await User.find({ userName: result.data });
+      res.json(data);
+      return;
+    } else {
+      res.json("not logged in");
+    }
+  } catch (error) {
     res.json("not logged in");
   }
 };
