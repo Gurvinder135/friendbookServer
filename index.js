@@ -10,7 +10,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(
   cors({
-    origin: "*",
+    origin: ["https://friendbookclient.vercel.app", "http://localhost:3000"],
     methods: ["POST", "PUT", "GET", "OPTIONS", "HEAD", "DELETE"],
     credentials: true,
   })

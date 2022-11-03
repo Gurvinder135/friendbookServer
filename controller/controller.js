@@ -16,7 +16,13 @@ module.exports.postLogin = async (req, res, next) => {
     return;
   }
   let token = jwt.sign({ data: username }, "abc", { expiresIn: 1800 });
-  res.status(200).send({ token, result });
+  res
+    .status(200)
+    .cookie("Token", token, {
+      httpOnly: true,
+      maxAge: 24 * 60 * 60 * 1000,
+    })
+    .json("success");
 };
 
 module.exports.postRegister = async (req, res) => {
@@ -33,19 +39,9 @@ module.exports.isAuthenticate = async (req, res) => {
   if (req.cookies.Token) {
     let result = jwt.verify(req.cookies.Token, "abc");
     let data = await User.find({ userName: result.data });
-    res
-      // .cookie("jwt", "refreshToken", {
-      //   httpOnly: true,
-      //   maxAge: 24 * 60 * 60 * 1000,
-      // })
-      .json(data);
+    res.json(data);
     return;
   } else {
-    res.res
-      // .cookie("jwt", "refreshToken", {
-      //   httpOnly: true,
-      //   maxAge: 24 * 60 * 60 * 1000,
-      // })
-      .json("not logged in");
+    res.json("not logged in");
   }
 };
