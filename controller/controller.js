@@ -17,10 +17,11 @@ module.exports.postLogin = async (req, res, next) => {
   }
   let token = jwt.sign({ data: username }, "abc", { expiresIn: 1800 });
   res
-    .status(200)
+
     .cookie("Token", token, {
       maxAge: 24 * 60 * 60 * 1000,
     })
+    .status(200)
     .json("success");
 };
 
