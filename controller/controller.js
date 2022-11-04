@@ -19,8 +19,6 @@ module.exports.postLogin = async (req, res, next) => {
   res
     .status(200)
     .cookie("Token", token, {
-      httpOnly: true,
-      secure: true,
       maxAge: 24 * 60 * 60 * 1000,
     })
     .json("success");
