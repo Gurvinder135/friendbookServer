@@ -7,7 +7,7 @@ var cookieParser = require("cookie-parser");
 
 const app = express();
 app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
+app.use(express.json({ limit: "5mb" }));
 app.use(
   cors({
     origin: ["https://friendbookclient.vercel.app", "http://localhost:3000"],
