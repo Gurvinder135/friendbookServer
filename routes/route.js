@@ -23,7 +23,7 @@ router.get("/", (req, res) => {
 
 router.post("/register", postRegister);
 router.get("/isAuthenticate", isAuthenticate);
-router.get("/logout", (req, res) => {
+router.post("/logout", (req, res) => {
   res.clearCookie("Token").send("sucess");
 });
 router.post("/postComment", authGuard, postComment);
