@@ -63,7 +63,7 @@ module.exports.postLogin = async (req, res, next) => {
 
     .cookie("Token", token, {
       secure: true,
-      sameSite: "none",
+      sameSite: "None",
       maxAge: 24 * 60 * 60 * 1000,
     })
     .status(200)
