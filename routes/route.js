@@ -24,13 +24,7 @@ router.get("/", (req, res) => {
 router.post("/register", postRegister);
 router.get("/isAuthenticate", isAuthenticate);
 router.post("/logout", (req, res) => {
-  res
-    .clearCookie("Token", {
-      domain: ".vercel.app",
-      secure: true,
-      sameSite: "None",
-    })
-    .send("sucess");
+  res.clearCookie("Token", { secure: true, sameSite: "None" }).send("sucess");
 });
 router.post("/postComment", authGuard, postComment);
 router.delete("/deleteComment/:username/:id", authGuard, deleteComment);
